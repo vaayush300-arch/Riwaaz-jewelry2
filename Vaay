@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Riwaaz Jewelry – Tradition Meets Modernity</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#c9a84c;--gold-l:#e8c97a;--gold-d:#9a7530;--cream:#faf6f0;--deep:#1a0f0a;--text:#3a2a1e;--muted:#8a7060;--border:#e8ddd0;--white:#fff;--red:#c0392b;--green:#2d6a4f;--wa:#25d366}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden}
+
+/* MARQUEE */
+.mbar{background:var(--deep);color:var(--gold-l);padding:9px 0;overflow:hidden;white-space:nowrap;font-size:.76rem;letter-spacing:.04em}
+.minner{display:inline-block;animation:tick 35s linear infinite}
+.minner span{margin:0 2rem}.minner .sep{color:var(--gold)}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* HEADER */
+header{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:900;padding:0 1.25rem}
+.hdr{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:62px}
+.lname{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;color:var(--deep);letter-spacing:.04em;display:block}
+.ltag{font-size:.6rem;color:var(--gold-d);letter-spacing:.18em;text-transform:uppercase;margin-top:1px;display:block}
+.hcart{background:var(--deep);color:var(--gold-l);border:none;cursor:pointer;padding:.42rem 1rem;border-radius:30px;font-size:.78rem;font-family:'DM Sans',sans-serif;display:flex;align-items:center;gap:.4rem;transition:background .2s}
+.hcart:hover{background:var(--gold-d)}
+.cbadge{background:var(--gold);color:var(--deep);border-radius:50%;width:18px;height:18px;font-size:.62rem;font-weight:700;display:flex;align-items:center;justify-content:center;min-width:18px}
+
+/* HERO */
+.hero{position:relative;overflow:hidden;height:min(90vh,660px)}
+.hslide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.2s}
+.hslide.on{opacity:1}
+.hslide::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,15,10,.72) 0%,rgba(26,15,10,.3) 65%,transparent 100%)}
+.hcnt{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:center;padding:2rem 2rem 3rem;max-width:580px}
+.heye{font-size:.68rem;color:var(--gold-l);letter-spacing:.22em;text-transform:uppercase;margin-bottom:.9rem;animation:fup .8s both}
+.hh1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,6vw,3.8rem);font-weight:300;color:var(--white);line-height:1.15;margin-bottom:1.1rem;animation:fup .9s .1s both}
+.hh1 em{font-style:italic;color:var(--gold-l)}
+.hsub{font-size:.88rem;color:rgba(255,255,255,.76);margin-bottom:1.8rem;line-height:1.6;animation:fup .9s .2s both}
+.btnp{display:inline-flex;align-items:center;gap:.45rem;background:var(--gold);color:var(--deep);padding:.72rem 1.9rem;border-radius:40px;font-size:.82rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;border:none;cursor:pointer;text-decoration:none;width:fit-content;transition:all .25s;animation:fup .9s .3s both}
+.btnp:hover{background:var(--gold-l);transform:translateY(-2px);box-shadow:0 8px 20px rgba(201,168,76,.35)}
+.hdots{position:absolute;bottom:1.4rem;left:50%;transform:translateX(-50%);display:flex;gap:.45rem;z-index:3}
+.hdot{width:6px;height:6px;border-radius:3px;background:rgba(255,255,255,.4);border:none;cursor:pointer;transition:all .3s}
+.hdot.on{background:var(--gold);width:20px}
+@keyframes fup{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
+/* SHOP */
+#shop{padding:3.5rem 1.25rem;max-width:1200px;margin:0 auto}
+.sechdr{text-align:center;margin-bottom:2rem}
+.seclbl{font-size:.67rem;color:var(--gold-d);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.45rem}
+.sectit{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:400;color:var(--deep)}
+.secln{width:48px;height:1px;background:var(--gold);margin:1rem auto 0}
+
+/* FILTERS */
+.filters{display:flex;gap:.45rem;flex-wrap:wrap;justify-content:center;margin-bottom:2.4rem}
+.fb{padding:.4rem 1.1rem;border-radius:30px;border:1.5px solid var(--border);background:var(--white);color:var(--muted);font-size:.76rem;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .2s;letter-spacing:.03em}
+.fb:hover,.fb.on{border-color:var(--gold);background:var(--gold);color:var(--deep);font-weight:500}
+
+/* PRODUCT GRID */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:.9rem}
+@media(min-width:540px){.pgrid{grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:1.1rem}}
+@media(min-width:900px){.pgrid{grid-template-columns:repeat(auto-fill,minmax(215px,1fr))}}
+.pcard{background:var(--white);border-radius:14px;overflow:hidden;box-shadow:0 2px 12px rgba(58,42,30,.07);transition:transform .25s,box-shadow .25s;display:flex;flex-direction:column}
+.pcard:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(58,42,30,.13)}
+.pimg{position:relative;aspect-ratio:1/1;overflow:hidden;background:#f5ede3}
+.pimg img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.pcard:hover .pimg img{transform:scale(1.07)}
+.pbadge{position:absolute;top:.55rem;left:.55rem;background:var(--deep);color:var(--gold-l);font-size:.58rem;padding:.2rem .55rem;border-radius:20px;letter-spacing:.05em;text-transform:uppercase}
+.stk{position:absolute;top:.55rem;right:.55rem;font-size:.58rem;padding:.2rem .55rem;border-radius:20px;font-weight:500}
+.stk.ok{background:#d4edda;color:#155724}.stk.no{background:#f8d7da;color:#721c24}
+.pinfo{padding:.8rem .8rem .9rem;flex:1;display:flex;flex-direction:column}
+.pcat{font-size:.58rem;color:var(--gold-d);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.25rem}
+.pname{font-family:'Cormorant Garamond',serif;font-size:.98rem;font-weight:600;color:var(--deep);line-height:1.3;flex:1}
+.pdesc{font-size:.68rem;color:var(--muted);margin:.28rem 0 .6rem;line-height:1.5}
+.pftr{display:flex;align-items:center;justify-content:space-between;gap:.4rem;margin-top:auto}
+.ppr{font-family:'Cormorant Garamond',serif;font-size:1.18rem;font-weight:600;color:var(--deep)}
+.atc{background:var(--deep);color:var(--gold-l);border:none;cursor:pointer;padding:.4rem .8rem;border-radius:22px;font-size:.7rem;font-family:'DM Sans',sans-serif;transition:all .2s;white-space:nowrap}
+.atc:hover{background:var(--gold);color:var(--deep)}
+.atc:disabled{background:#ccc;color:#888;cursor:not-allowed}
+.atc.done{background:var(--green);color:#fff}
+
+/* FABS */
+.fabs{position:fixed;bottom:1.4rem;right:1.2rem;display:flex;flex-direction:column;gap:.6rem;z-index:800}
+.fab{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.18);transition:transform .2s,box-shadow .2s;text-decoration:none}
+.fab:hover{transform:scale(1.1);box-shadow:0 6px 22px rgba(0,0,0,.25)}
+.fab-wa{background:var(--wa)}.fab-cart{background:var(--deep);position:relative}
+.fab-cart svg{color:var(--gold-l);width:24px;height:24px}
+.fcount{position:absolute;top:-4px;right:-4px;background:var(--gold);color:var(--deep);border-radius:50%;min-width:18px;height:18px;font-size:.61rem;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid var(--white)}
+
+/* OVERLAY */
+.ov{position:fixed;inset:0;background:rgba(26,15,10,.55);z-index:1000;opacity:0;pointer-events:none;transition:opacity .3s}
+.ov.on{opacity:1;pointer-events:all}
+
+/* CART DRAWER */
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100vw);background:var(--white);z-index:1001;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;box-shadow:-8px 0 32px rgba(0,0,0,.12)}
+.drawer.on{transform:translateX(0)}
+.dhead{padding:1.2rem 1.2rem .9rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.dtit{font-family:'Cormorant Garamond',serif;font-size:1.38rem;font-weight:600;color:var(--deep)}
+.xbtn{background:none;border:none;cursor:pointer;width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background .2s;color:var(--muted)}
+.xbtn:hover{background:var(--border)}
+.dbody{flex:1;overflow-y:auto;padding:.9rem 1.2rem}
+.empty{text-align:center;padding:3rem 1rem;color:var(--muted)}
+.empty svg{width:54px;height:54px;opacity:.28;margin-bottom:.9rem}
+.empty p{font-family:'Cormorant Garamond',serif;font-size:1.05rem}
+.citem{display:flex;gap:.8rem;padding:.85rem 0;border-bottom:1px solid var(--border);animation:sin .25s}
+@keyframes sin{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:translateX(0)}}
+.cimg{width:62px;height:62px;border-radius:8px;object-fit:cover;flex-shrink:0;background:#f5ede3}
+.cinfo{flex:1;min-width:0}
+.cname{font-size:.8rem;font-weight:500;color:var(--deep);line-height:1.3;margin-bottom:.22rem}
+.cprc{font-size:.75rem;color:var(--muted)}
+.csub{font-size:.8rem;font-weight:600;color:var(--deep);margin-top:.35rem}
+.qrow{display:flex;align-items:center;gap:.45rem;margin-top:.35rem}
+.qbtn{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--border);background:var(--white);cursor:pointer;font-size:.9rem;display:flex;align-items:center;justify-content:center;transition:all .15s;color:var(--deep)}
+.qbtn:hover{border-color:var(--gold);background:var(--gold)}
+.qbtn:disabled{opacity:.35;cursor:not-allowed}
+.qval{font-size:.83rem;font-weight:600;min-width:18px;text-align:center}
+.rmbtn{background:none;border:none;cursor:pointer;color:#ccc;font-size:.95rem;padding:.22rem;transition:color .2s;align-self:flex-start}
+.rmbtn:hover{color:var(--red)}
+.dfoot{padding:.9rem 1.2rem 1.4rem;border-top:1px solid var(--border)}
+.delbox{background:#fff8ec;border:1px solid #ffe5b4;border-radius:8px;padding:.55rem .8rem;margin-bottom:.8rem;font-size:.7rem;color:#7a5c00;line-height:1.55}
+.trow{display:flex;justify-content:space-between;align-items:center;margin-bottom:.9rem}
+.tlbl{font-size:.83rem;color:var(--muted)}.tval{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:600;color:var(--deep)}
+.btnco{width:100%;background:var(--deep);color:var(--gold-l);border:none;cursor:pointer;padding:.95rem;border-radius:12px;font-size:.88rem;font-family:'DM Sans',sans-serif;font-weight:500;letter-spacing:.05em;transition:background .2s}
+.btnco:hover{background:var(--gold-d)}
+
+/* MODAL */
+.mbg{position:fixed;inset:0;background:rgba(26,15,10,.6);z-index:1100;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+@media(min-width:600px){.mbg{align-items:center;padding:1rem}}
+.mbg.on{opacity:1;pointer-events:all}
+.modal{background:var(--white);width:100%;max-width:500px;max-height:93vh;border-radius:20px 20px 0 0;overflow-y:auto;transform:translateY(60px);transition:transform .35s cubic-bezier(.4,0,.2,1)}
+@media(min-width:600px){.modal{border-radius:20px}}
+.mbg.on .modal{transform:translateY(0)}
+.mhd{padding:1.2rem 1.2rem .7rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--white);z-index:2}
+.mtit{font-family:'Cormorant Garamond',serif;font-size:1.32rem;font-weight:600}
+.mbody{padding:1.2rem}
+.sumbox{background:var(--cream);border-radius:10px;padding:.8rem .95rem;margin-bottom:1.2rem}
+.sumlbl{font-size:.67rem;color:var(--gold-d);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.45rem}
+.sl{display:flex;justify-content:space-between;font-size:.76rem;color:var(--muted);padding:.16rem 0}
+.sl.tot{font-weight:600;color:var(--deep);font-size:.88rem;border-top:1px solid var(--border);padding-top:.45rem;margin-top:.3rem}
+.fg{margin-bottom:.95rem}
+label{display:block;font-size:.69rem;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.32rem}
+label .req{color:var(--red)}
+input,textarea,select{width:100%;padding:.62rem .85rem;border:1.5px solid var(--border);border-radius:10px;font-size:.83rem;font-family:'DM Sans',sans-serif;background:var(--white);color:var(--deep);transition:border-color .2s;outline:none;-webkit-appearance:none;appearance:none}
+input:focus,textarea:focus,select:focus{border-color:var(--gold)}
+textarea{resize:vertical;min-height:65px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+/* Payment options */
+.payopts{display:flex;gap:.7rem;margin-top:.35rem}
+.payopt{flex:1;display:flex;align-items:center;gap:.5rem;padding:.6rem .85rem;border:1.5px solid var(--border);border-radius:10px;cursor:pointer;transition:all .2s;font-size:.8rem;font-family:'DM Sans',sans-serif;color:var(--text)}
+.payopt input[type=radio]{width:16px;height:16px;min-width:16px;padding:0;margin:0;cursor:pointer;accent-color:var(--gold);flex-shrink:0}
+.payopt.selected{border-color:var(--gold);background:#fffbf0}
+.btnorder{width:100%;background:var(--gold);color:var(--deep);border:none;cursor:pointer;padding:.95rem;border-radius:12px;font-size:.88rem;font-family:'DM Sans',sans-serif;font-weight:600;letter-spacing:.06em;text-transform:uppercase;transition:all .2s;margin-top:.4rem}
+.btnorder:hover{background:var(--gold-l);transform:translateY(-2px)}
+.fnote{font-size:.68rem;color:var(--muted);text-align:center;margin-top:.55rem;line-height:1.5}
+
+/* SUCCESS */
+.succ{text-align:center;padding:2.4rem 1.5rem;display:none}
+.succ.on{display:block}
+.sico{width:68px;height:68px;background:#d4edda;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.2rem}
+.sico svg{width:34px;height:34px;color:var(--green)}
+.stit{font-family:'Cormorant Garamond',serif;font-size:1.55rem;color:var(--deep);margin-bottom:.45rem}
+.smsg{font-size:.8rem;color:var(--muted);line-height:1.6;margin-bottom:1.4rem}
+.wabtn{display:inline-flex;align-items:center;gap:.45rem;background:var(--wa);color:#fff;padding:.7rem 1.65rem;border-radius:40px;font-size:.83rem;font-weight:500;text-decoration:none;transition:all .2s}
+.wabtn:hover{background:#1da856;transform:translateY(-2px)}
+
+/* FOOTER */
+footer{background:var(--deep);color:rgba(255,255,255,.65);padding:2.5rem 1.25rem;text-align:center}
+.flogo{font-family:'Cormorant Garamond',serif;font-size:1.55rem;color:var(--gold-l);margin-bottom:.22rem}
+.ftag{font-size:.67rem;color:var(--gold-d);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.2rem}
+.finfo{font-size:.76rem;line-height:2}
+.finfo a{color:var(--gold-l);text-decoration:none}
+.fcopy{font-size:.63rem;opacity:.38;margin-top:.9rem}
+
+/* TOAST */
+.toast{position:fixed;bottom:5.5rem;left:50%;transform:translateX(-50%) translateY(16px);background:var(--deep);color:var(--gold-l);padding:.6rem 1.35rem;border-radius:30px;font-size:.78rem;z-index:1200;opacity:0;transition:all .3s;white-space:nowrap;pointer-events:none}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- ═══ MARQUEE BANNER ═══ -->
+<div class="mbar">
+  <div class="minner">
+    <span>🚚 Cash on Delivery charges: <strong>₹89</strong></span><span class="sep"> ✦ </span>
+    <span>💳 Prepaid orders: <strong>₹49</strong></span><span class="sep"> ✦ </span>
+    <span>🎁 FREE Delivery on orders above <strong>₹799</strong></span><span class="sep"> ✦ </span>
+    <span>✨ Riwaaz Jewelry — Tradition Meets Modernity</span><span class="sep"> ✦ </span>
+    <span>🚚 Cash on Delivery charges: <strong>₹89</strong></span><span class="sep"> ✦ </span>
+    <span>💳 Prepaid orders: <strong>₹49</strong></span><span class="sep"> ✦ </span>
+    <span>🎁 FREE Delivery on orders above <strong>₹799</strong></span><span class="sep"> ✦ </span>
+    <span>✨ Riwaaz Jewelry — Tradition Meets Modernity</span><span class="sep"> ✦ </span>
+  </div>
+</div>
+
+<!-- ═══ HEADER ═══ -->
+<header>
+  <div class="hdr">
+    <a href="#" style="text-decoration:none">
+      <span class="lname">Riwaaz Jewelry</span>
+      <span class="ltag">Tradition Meets Modernity</span>
+    </a>
+    <button class="hcart" onclick="openCart()">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      Cart <span class="cbadge" id="hBadge">0</span>
+    </button>
+  </div>
+</header>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hslide on" style="background-image:url('https://i.ibb.co/jvDjpJXL/1764570681251.png')"></div>
+  <div class="hslide"    style="background-image:url('https://i.ibb.co/ycD7yW59/1765346032878-1.png')"></div>
+  <div class="hcnt">
+    <p class="heye">New Collection 2026</p>
+    <h1 class="hh1">Wear the <em>Art</em><br>of Tradition</h1>
+    <p class="hsub">Handpicked jewelry blending timeless craftsmanship with contemporary style — for every occasion.</p>
+    <a href="#shop" class="btnp">
+      Shop Now
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+  <div class="hdots">
+    <button class="hdot on" onclick="goSlide(0)"></button>
+    <button class="hdot"    onclick="goSlide(1)"></button>
+  </div>
+</section>
+
+<!-- ═══ SHOP ═══ -->
+<section id="shop">
+  <div class="sechdr">
+    <p class="seclbl">Our Collection</p>
+    <h2 class="sectit">Curated Just for You</h2>
+    <div class="secln"></div>
+  </div>
+  <div class="filters" id="filterRow">
+    <button class="fb on" data-f="all">All</button>
+    <button class="fb" data-f="Necklace">Necklace</button>
+    <button class="fb" data-f="Earring">Earring</button>
+    <button class="fb" data-f="Pendant">Pendant</button>
+    <button class="fb" data-f="Ring">Ring</button>
+    <button class="fb" data-f="Bracelet">Bracelet</button>
+  </div>
+  <div class="pgrid" id="pgrid"></div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="flogo">Riwaaz Jewelry</div>
+  <div class="ftag">Tradition Meets Modernity</div>
+  <div class="finfo">
+    📍 Kakrahwa Bazar, Police Chowki Road, Siddharth Nagar – 272206, UP, India<br>
+    📞 <a href="tel:+917992097130">+91 79920 97130</a> &nbsp;|&nbsp;
+    ✉️ <a href="mailto:riwaaz485@gmail.com">riwaaz485@gmail.com</a>
+  </div>
+  <div class="fcopy">© 2026 Riwaaz Jewelry. All rights reserved.</div>
+</footer>
+
+<!-- ═══ FLOATING BUTTONS ═══ -->
+<div class="fabs">
+  <a href="https://wa.me/917992097130" target="_blank" rel="noopener" class="fab fab-wa" title="Chat on WhatsApp">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+  <button class="fab fab-cart" onclick="openCart()" title="Cart">
+    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+    <span class="fcount" id="fBadge">0</span>
+  </button>
+</div>
+
+<!-- OVERLAY -->
+<div class="ov" id="ov" onclick="closeAll()"></div>
+
+<!-- ═══ CART DRAWER ═══ -->
+<aside class="drawer" id="drawer">
+  <div class="dhead">
+    <span class="dtit">Your Cart</span>
+    <button class="xbtn" onclick="closeCart()"><svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+  </div>
+  <div class="dbody" id="dbody"></div>
+  <div class="dfoot" id="dfoot" style="display:none">
+    <div class="delbox" id="delbox"></div>
+    <div class="trow"><span class="tlbl">Grand Total</span><span class="tval" id="gtot">₹0</span></div>
+    <button class="btnco" onclick="openCheckout()">Proceed to Order →</button>
+  </div>
+</aside>
+
+<!-- ═══ CHECKOUT MODAL ═══ -->
+<div class="mbg" id="mbg">
+  <div class="modal">
+    <div class="mhd">
+      <span class="mtit">Place Your Order</span>
+      <button class="xbtn" onclick="closeModal()"><svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="mbody">
+
+      <!-- Order summary -->
+      <div class="sumbox" id="sumBox"></div>
+
+      <!-- SUCCESS SCREEN -->
+      <div class="succ" id="sScr">
+        <div class="sico"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <h3 class="stit">Order Placed! 🎉</h3>
+        <p class="smsg">Thank you! <strong>Riwaaz Jewelry</strong> will contact you on WhatsApp shortly to confirm your order and arrange delivery.</p>
+        <a href="https://wa.me/917992097130" target="_blank" class="wabtn">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Chat on WhatsApp
+        </a>
+      </div>
+
+      <!-- ORDER FORM -->
+      <div id="oForm">
+        <div class="fg">
+          <label>Full Name <span class="req">*</span></label>
+          <input type="text" id="fName" placeholder="Your full name">
+        </div>
+        <div class="fg">
+          <label>Phone Number <span class="req">*</span></label>
+          <input type="tel" id="fPhone" placeholder="+91 XXXXX XXXXX">
+        </div>
+        <div class="fg">
+          <label>Delivery Address <span class="req">*</span></label>
+          <textarea id="fAddr" placeholder="House/Flat no., Street, Colony, City..."></textarea>
+        </div>
+        <div class="row2">
+          <div class="fg">
+            <label>Pincode <span class="req">*</span></label>
+            <input type="text" id="fPin" placeholder="e.g. 272206" maxlength="6">
+          </div>
+          <div class="fg">
+            <label>Landmark <small style="text-transform:none;letter-spacing:0">(optional)</small></label>
+            <input type="text" id="fLand" placeholder="Near school...">
+          </div>
+        </div>
+
+        <!-- PAYMENT OPTIONS -->
+        <div class="fg">
+          <label>Payment Method <span class="req">*</span></label>
+          <div class="payopts">
+            <label class="payopt selected" id="lCOD">
+              <input type="radio" name="pay" value="cod" checked onchange="payChanged()">
+              🏠 Cash on Delivery
+            </label>
+            <label class="payopt" id="lPre">
+              <input type="radio" name="pay" value="prepaid" onchange="payChanged()">
+              💳 Prepaid / Online
+            </label>
+          </div>
+        </div>
+
+        <div class="fg">
+          <label>Special Instructions <small style="text-transform:none;letter-spacing:0">(optional)</small></label>
+          <textarea id="fNote" placeholder="Gift wrap, colour preference, urgent delivery..."></textarea>
+        </div>
+
+        <input type="hidden" id="hCart">
+        <input type="hidden" id="hTot">
+
+        <button class="btnorder" onclick="placeOrder()">✦ Place Order</button>
+        <p class="fnote">We confirm via WhatsApp · No advance payment for COD · Secure ordering</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* ══════════════════════════════════════════════════════════════
+   ✏️  EDITABLE PRODUCT DATA — update prices, names, stock here
+══════════════════════════════════════════════════════════════ */
+const PRODUCTS = [
+  {id:1,  name:"Red Square Polki Necklace with Earring",            price:499, cat:"Necklace", img:"https://i.ibb.co/gFzSPbpX/1764569334212.png",       desc:"Premium quality necklace set",                inv:1},
+  {id:2,  name:"Green Stone Premium Necklace Set with Earring",     price:529, cat:"Necklace", img:"https://i.ibb.co/21LMZP2m/1764570599150.png",        desc:"Premium quality party wear necklace",          inv:1},
+  {id:3,  name:"Premium Blue Stone Antique Necklace with Earring",  price:499, cat:"Necklace", img:"https://i.ibb.co/mC05dhX8/1764569526024.png",        desc:"Premium quality necklace set",                inv:1},
+  {id:4,  name:"Light Violet Stone Silver Oxidised Necklace Set",   price:389, cat:"Necklace", img:"https://i.ibb.co/ycD7yW59/1765346032878-1.png",      desc:"Premium necklace set for party wear",          inv:1},
+  {id:5,  name:"Silver Oxidised Goddess Laxmi Choker with Earring", price:289, cat:"Necklace", img:"https://i.ibb.co/fYZLPMdX/file-00000000d9687209b7d87a3723649daf.png", desc:"Premium quality choker set", inv:1},
+  {id:6,  name:"Premium Black Onyx Golden Earring",                 price:299, cat:"Earring",  img:"https://i.ibb.co/N6VDz9xy/IMG-20260312-WA0012.jpg",  desc:"Most trendy and beautiful earring",            inv:2},
+  {id:7,  name:"Premium Golden Black Butterfly Hoops Earring",      price:299, cat:"Earring",  img:"https://i.ibb.co/Qj38S8KV/IMG-20260312-WA0010.jpg",  desc:"Premium quality trendy earring",              inv:3},
+  {id:8,  name:"Premium Rose Gold AD Stone Roman Hoops Earring",    price:229, cat:"Earring",  img:"https://i.ibb.co/PvvdrSmc/IMG-20260312-WA0017.jpg",  desc:"Premium and trendy earring",                  inv:3},
+  {id:9,  name:"Premium Leather Touch Floral Half Hoops Earring",   price:249, cat:"Earring",  img:"https://i.ibb.co/kVv6v5Dq/IMG-20260312-WA0038.jpg",  desc:"Premium quality earring",                     inv:3},
+  {id:10, name:"Premium Curly AD Stone Earring",                    price:159, cat:"Earring",  img:"https://i.ibb.co/Y7xB1VRq/IMG-20260312-WA0021.jpg",  desc:"Premium and trendy AD earring",               inv:3},
+];
+
+/* ══════════════════════════════════════════════════════════════
+   CART
+══════════════════════════════════════════════════════════════ */
+let cart = JSON.parse(localStorage.getItem('rz2_cart') || '[]');
+const save = () => localStorage.setItem('rz2_cart', JSON.stringify(cart));
+const gP   = id => PRODUCTS.find(p => p.id === id);
+const tot  = ()  => cart.reduce((s,x) => s + gP(x.id).price * x.qty, 0);
+const cnt  = ()  => cart.reduce((s,x) => s + x.qty, 0);
+
+function addToCart(id) {
+  const p = gP(id), ci = cart.find(x => x.id === id);
+  const inCart = ci ? ci.qty : 0;
+  if (inCart >= p.inv) { showToast('Only ' + p.inv + ' piece(s) available!'); return; }
+  ci ? ci.qty++ : cart.push({id, qty:1});
+  save(); badges(); renderCart();
+  showToast('Added to cart ✓');
+  const btn = document.querySelector('[data-atc="'+id+'"]');
+  if (btn) { btn.textContent = '✓ Added'; btn.classList.add('done'); setTimeout(() => { btn.textContent = 'Add to Cart'; btn.classList.remove('done'); }, 1500); }
+}
+
+function changeQty(id, d) {
+  const ci = cart.find(x => x.id === id);
+  if (!ci) return;
+  ci.qty += d;
+  if (ci.qty <= 0) cart = cart.filter(x => x.id !== id);
+  else if (ci.qty > gP(id).inv) { ci.qty = gP(id).inv; showToast('Max stock reached'); }
+  save(); badges(); renderCart();
+}
+
+function removeItem(id) { cart = cart.filter(x => x.id !== id); save(); badges(); renderCart(); }
+
+function badges() {
+  const c = cnt();
+  document.getElementById('hBadge').textContent = c;
+  document.getElementById('fBadge').textContent = c;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   RENDER PRODUCTS
+══════════════════════════════════════════════════════════════ */
+let curF = 'all';
+function renderProducts(f) {
+  if (f !== undefined) curF = f;
+  const grid = document.getElementById('pgrid');
+  grid.innerHTML = '';
+  PRODUCTS.forEach(p => {
+    if (curF !== 'all' && curF !== p.cat) return;
+    const ci = cart.find(x => x.id === p.id);
+    const atMax = ci && ci.qty >= p.inv;
+    const el = document.createElement('div');
+    el.className = 'pcard';
+    el.innerHTML = `
+      <div class="pimg">
+        <img src="${p.img}" alt="${p.name}" loading="lazy">
+        <span class="pbadge">${p.cat}</span>
+        <span class="stk ${p.inv > 0 ? 'ok' : 'no'}">${p.inv > 0 ? 'In Stock' : 'Sold Out'}</span>
+      </div>
+      <div class="pinfo">
+        <div class="pcat">${p.cat}</div>
+        <div class="pname">${p.name}</div>
+        <div class="pdesc">${p.desc}</div>
+        <div class="pftr">
+          <span class="ppr">₹${p.price}</span>
+          <button class="atc" data-atc="${p.id}"
+            ${(!p.inv || atMax) ? 'disabled' : ''}
+            onclick="addToCart(${p.id})">
+            ${!p.inv ? 'Sold Out' : atMax ? 'Max Qty' : 'Add to Cart'}
+          </button>
+        </div>
+      </div>`;
+    grid.appendChild(el);
+  });
+}
+
+/* ══════════════════════════════════════════════════════════════
+   RENDER CART
+══════════════════════════════════════════════════════════════ */
+function renderCart() {
+  const body = document.getElementById('dbody');
+  const foot = document.getElementById('dfoot');
+  if (!cart.length) {
+    body.innerHTML = `<div class="empty"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><p>Your cart is empty</p></div>`;
+    foot.style.display = 'none'; return;
+  }
+  foot.style.display = 'block';
+  body.innerHTML = cart.map(x => {
+    const p = gP(x.id);
+    return `<div class="citem">
+      <img class="cimg" src="${p.img}" alt="${p.name}" loading="lazy">
+      <div class="cinfo">
+        <div class="cname">${p.name}</div>
+        <div class="cprc">₹${p.price} each</div>
+        <div class="qrow">
+          <button class="qbtn" onclick="changeQty(${p.id},-1)">−</button>
+          <span class="qval">${x.qty}</span>
+          <button class="qbtn" onclick="changeQty(${p.id},1)" ${x.qty >= p.inv ? 'disabled' : ''}>+</button>
+        </div>
+        <div class="csub">Subtotal: ₹${p.price * x.qty}</div>
+      </div>
+      <button class="rmbtn" onclick="removeItem(${p.id})" title="Remove">✕</button>
+    </div>`;
+  }).join('');
+  const t = tot();
+  document.getElementById('gtot').textContent = '₹' + t;
+  const need = 799 - t;
+  document.getElementById('delbox').innerHTML = t >= 799
+    ? '🎁 You qualify for <strong>FREE delivery!</strong> 🎉'
+    : `Add ₹${need} more for FREE delivery! &nbsp;·&nbsp; COD: ₹89 &nbsp;·&nbsp; Prepaid: ₹49`;
+  renderProducts();
+}
+
+/* ══════════════════════════════════════════════════════════════
+   OPEN/CLOSE PANELS
+══════════════════════════════════════════════════════════════ */
+function openCart()   { document.getElementById('drawer').classList.add('on'); document.getElementById('ov').classList.add('on'); renderCart(); }
+function closeCart()  { document.getElementById('drawer').classList.remove('on'); document.getElementById('ov').classList.remove('on'); }
+function closeModal() { document.getElementById('mbg').classList.remove('on'); document.getElementById('ov').classList.remove('on'); }
+function closeAll()   { closeCart(); closeModal(); }
+
+function openCheckout() {
+  closeCart();
+  buildSummary();
+  document.getElementById('mbg').classList.add('on');
+  document.getElementById('ov').classList.add('on');
+  document.getElementById('sScr').classList.remove('on');
+  document.getElementById('oForm').style.display = 'block';
+  document.getElementById('sumBox').style.display = 'block';
+}
+
+/* ══════════════════════════════════════════════════════════════
+   ORDER SUMMARY
+══════════════════════════════════════════════════════════════ */
+function getPayMode() { return document.querySelector('input[name=pay]:checked').value; }
+
+function getDelivery() {
+  const t = tot();
+  if (t >= 799) return 0;
+  return getPayMode() === 'prepaid' ? 49 : 89;
+}
+
+function buildSummary() {
+  const t = tot(), d = getDelivery();
+  const lines = cart.map(x => { const p = gP(x.id); return `<div class="sl"><span>${p.name} × ${x.qty}</span><span>₹${p.price*x.qty}</span></div>`; }).join('');
+  const payLabel = getPayMode() === 'prepaid' ? 'Prepaid' : 'COD';
+  document.getElementById('sumBox').innerHTML = `
+    <div class="sumlbl">Order Summary</div>
+    ${lines}
+    <div class="sl"><span>Delivery (${payLabel})</span><span>${d===0?'FREE ✓':'₹'+d}</span></div>
+    <div class="sl tot"><span>Total Payable</span><span>₹${t+d}</span></div>`;
+}
+
+function payChanged() {
+  document.getElementById('lCOD').classList.toggle('selected', getPayMode() === 'cod');
+  document.getElementById('lPre').classList.toggle('selected', getPayMode() === 'prepaid');
+  if (cart.length) buildSummary();
+}
+
+/* ══════════════════════════════════════════════════════════════
+   PLACE ORDER
+══════════════════════════════════════════════════════════════ */
+function placeOrder() {
+  const name  = document.getElementById('fName').value.trim();
+  const phone = document.getElementById('fPhone').value.trim();
+  const addr  = document.getElementById('fAddr').value.trim();
+  const pin   = document.getElementById('fPin').value.trim();
+  const land  = document.getElementById('fLand').value.trim();
+  const note  = document.getElementById('fNote').value.trim();
+  const pay   = getPayMode() === 'prepaid' ? 'Prepaid / Online Payment' : 'Cash on Delivery (COD)';
+
+  if (!name)  { alert('Please enter your name.'); return; }
+  if (!phone) { alert('Please enter your phone number.'); return; }
+  if (!addr)  { alert('Please enter your delivery address.'); return; }
+  if (!/^\d{6}$/.test(pin)) { alert('Please enter a valid 6-digit pincode.'); return; }
+
+  const t = tot(), d = getDelivery(), grand = t + d;
+
+  const lines = cart.map(x => { const p = gP(x.id); return `  • ${p.name} (x${x.qty}) — ₹${p.price * x.qty}`; }).join('\n');
+  const body  = [
+    '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
+    'NEW ORDER — RIWAAZ JEWELRY',
+    '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
+    '',
+    'ITEMS ORDERED:',
+    lines,
+    '',
+    `Delivery Charge : ₹${d}`,
+    `GRAND TOTAL     : ₹${grand}`,
+    `Payment Method  : ${pay}`,
+    '',
+    '──────────────────────────────',
+    'CUSTOMER DETAILS',
+    '──────────────────────────────',
+    `Name     : ${name}`,
+    `Phone    : ${phone}`,
+    `Address  : ${addr}`,
+    `Pincode  : ${pin}`,
+    land ? `Landmark : ${land}` : '',
+    note ? `Note     : ${note}` : '',
+    '',
+    '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
+  ].filter(l => l !== null && l !== undefined).join('\n');
+
+  document.getElementById('hCart').value = body;
+  document.getElementById('hTot').value  = 'Grand Total: ₹' + grand;
+
+  const subj = encodeURIComponent(`New Order from ${name} – ₹${grand} – Riwaaz Jewelry`);
+  window.location.href = `mailto:riwaaz485@gmail.com?subject=${subj}&body=${encodeURIComponent(body)}`;
+
+  setTimeout(() => {
+    document.getElementById('oForm').style.display = 'none';
+    document.getElementById('sumBox').style.display = 'none';
+    document.getElementById('sScr').classList.add('on');
+    cart = []; save(); badges(); renderCart(); renderProducts();
+  }, 700);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   FILTERS
+══════════════════════════════════════════════════════════════ */
+document.getElementById('filterRow').addEventListener('click', e => {
+  const btn = e.target.closest('.fb');
+  if (!btn) return;
+  document.querySelectorAll('.fb').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  renderProducts(btn.dataset.f);
+});
+
+/* ══════════════════════════════════════════════════════════════
+   HERO SLIDER
+══════════════════════════════════════════════════════════════ */
+let si = 0;
+const slides = document.querySelectorAll('.hslide');
+const dots   = document.querySelectorAll('.hdot');
+function goSlide(i) {
+  slides[si].classList.remove('on'); dots[si].classList.remove('on');
+  si = i; slides[si].classList.add('on'); dots[si].classList.add('on');
+}
+setInterval(() => goSlide((si+1) % slides.length), 5000);
+
+/* ══════════════════════════════════════════════════════════════
+   TOAST
+══════════════════════════════════════════════════════════════ */
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('on');
+  setTimeout(() => t.classList.remove('on'), 2200);
+}
+
+/* ── INIT ── */
+renderProducts(); badges(); renderCart();
+</script>
+</body>
+</html>
